@@ -4,33 +4,36 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { reducer, sliceKey } from './slice';
-import { selectCounter } from './selectors';
-import { counterSaga } from './saga';
+import { Flex, Button, Link } from 'app/components';
 
-interface Props {}
+const INITIAL_NUMBER = 0;
 
-export function Counter(props: Props) {
-  useInjectReducer({ key: sliceKey, reducer: reducer });
-  useInjectSaga({ key: sliceKey, saga: counterSaga });
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const counter = useSelector(selectCounter);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const dispatch = useDispatch();
+export function Counter() {
+  const [count, setCount] = useState(INITIAL_NUMBER);
 
   return (
-    <>
+    <div className="mt-3 ml-3">
       <Helmet>
         <title>Counter</title>
         <meta name="description" content="Description of Counter" />
       </Helmet>
-      <div></div>
-    </>
+      <Link to="/" color="#000852" fontWeight="bold">
+        Return back
+      </Link>
+      <Flex flexDirection="column" alignItems="center" className="mx-auto mt-3">
+        <h1>{count}</h1>
+        <Flex mt="m">
+          <Button mr="m" bg="#000852" onClick={() => setCount(count + 1)}>
+            Increase
+          </Button>
+          <Button bg="#C20E0E" onClick={() => setCount(INITIAL_NUMBER)}>
+            Reset
+          </Button>
+        </Flex>
+      </Flex>
+    </div>
   );
 }

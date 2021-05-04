@@ -17,5 +17,10 @@ export const Link = styled(RouterLink)<
 >`
   text-decoration: none;
   color: #000;
+  :hover {
+    text-decoration: none;
+    color: #000;
+  }
+
   ${compose(color, fontWeight, space, layout)};
 `;
