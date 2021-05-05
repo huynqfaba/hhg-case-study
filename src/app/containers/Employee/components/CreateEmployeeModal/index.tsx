@@ -70,11 +70,16 @@ function CreateEmployeeForm(props: FormFormikProps & FormProps) {
         <FormFieldError name="position" />
       </FormGroup>
 
-      <Button bg="#000852" type="submit" disabled={!(dirty && isValid)}>
+      <Button bg="primaryBlue" type="submit" disabled={!(dirty && isValid)}>
         Submit
       </Button>
 
-      <Button type="button" bg="transparent" color="#000" onClick={handleClose}>
+      <Button
+        type="button"
+        bg="transparent"
+        color="black"
+        onClick={handleClose}
+      >
         Cancel
       </Button>
     </form>
@@ -96,7 +101,6 @@ const CreateEmployeeFormik = withFormik<FormFormikProps, CreateEmployee>({
   }),
   handleSubmit: (values, { props }) => {
     const { dispatch } = props;
-    console.log(values);
     dispatch(actions.createEmployee({ ...values }));
   },
 })(CreateEmployeeForm);

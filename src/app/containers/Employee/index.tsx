@@ -15,7 +15,6 @@ import { selectEmployee } from './selectors';
 import { employeeSaga } from './saga';
 import { Button, Flex, Link, Table } from 'app/components';
 import { TableInfo } from 'types/table';
-import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { CreateEmployeeModal } from './components/CreateEmployeeModal';
 
 const tableInfo: TableInfo = {
@@ -40,7 +39,7 @@ export function Employee() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
   useInjectSaga({ key: sliceKey, saga: employeeSaga });
 
-  const { listEmployees, loading, createEmployeeResult, error } = useSelector(
+  const { listEmployees, createEmployeeResult, error } = useSelector(
     selectEmployee,
   );
   const dispatch = useDispatch();
@@ -77,30 +76,24 @@ export function Employee() {
   );
 
   return (
-    <div className="mx-3 mt-3">
+    <div className="container-fluid mt-3">
       <Helmet>
         <title>Employee</title>
         <meta name="description" content="Description of Employee" />
       </Helmet>
-      {loading ? (
-        <LoadingIndicator />
-      ) : (
-        <div>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Link to="/" color="#000852" fontWeight="bold">
-              Return back
-            </Link>
-            <Button bg="#000852" onClick={() => setIsOpenModal(true)}>
-              New
-            </Button>
-          </Flex>
-          <Table tableInfo={tableInfo} data={data} />
-          <CreateEmployeeModal
-            visible={isOpenModal}
-            handleClose={() => setIsOpenModal(false)}
-          />
-        </div>
-      )}
+      <Flex alignItems="center" justifyContent="space-between">
+        <Link to="/" color="primaryBlue" fontWeight="bold">
+          Return back
+        </Link>
+        <Button bg="primaryBlue" onClick={() => setIsOpenModal(true)}>
+          New
+        </Button>
+      </Flex>
+      <Table tableInfo={tableInfo} data={data} />
+      <CreateEmployeeModal
+        visible={isOpenModal}
+        handleClose={() => setIsOpenModal(false)}
+      />
     </div>
   );
 }

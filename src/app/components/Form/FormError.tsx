@@ -1,5 +1,6 @@
 import React from 'react';
 import { ErrorMessage } from 'formik';
+import { Span } from '../index';
 
 interface Props {
   name: string;
@@ -8,8 +9,8 @@ interface Props {
 export const FormFieldError = (props: Props) => {
   const { name } = props;
   return (
-    <span style={{ color: '#c20e0e' }}>
+    <Span color="redPigment">
       <ErrorMessage name={name} />
-    </span>
+    </Span>
   );
 };

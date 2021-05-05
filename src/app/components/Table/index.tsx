@@ -95,16 +95,4 @@ const TableStyled = styled(TableBootstrap)`
   p {
     margin-bottom: 0;
   }
-
-  tbody tr td:first-of-type {
-    width: 40%;
-  }
-
-  tbody tr td:nth-of-type(2) {
-    width: 40%;
-  }
-
-  tbody tr td:last-of-type {
-    width: 20%;
-  }
 `;

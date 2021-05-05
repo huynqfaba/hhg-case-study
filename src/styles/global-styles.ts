@@ -1,10 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
+import theme from './theme';
 
 export const GlobalStyle = createGlobalStyle`
   html,
   body {
     line-height: 1.5;
-    background: #E5E5E5;
+    background: ${theme.colors.background};
   }
 
   body {

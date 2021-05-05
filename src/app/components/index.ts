@@ -5,5 +5,16 @@ import { Table } from './Table';
 import { IconWrapper } from './Icon';
 import { Modal } from './Modal';
 import { FormFieldError } from './Form/FormError';
+import { Span } from './Paragraph';
 
-export { Link, Box, Flex, Button, Table, IconWrapper, Modal, FormFieldError };
+export {
+  Link,
+  Box,
+  Flex,
+  Button,
+  Table,
+  IconWrapper,
+  Modal,
+  FormFieldError,
+  Span,
+};

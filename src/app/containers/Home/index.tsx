@@ -11,7 +11,7 @@ import { Box, Flex, Link } from 'app/components';
 
 export function Home() {
   return (
-    <div className="mx-3 mt-3">
+    <div className="container-fluid mt-3">
       <Helmet>
         <title>Home</title>
         <meta name="description" content="Description of Home" />

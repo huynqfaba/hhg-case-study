@@ -43,7 +43,7 @@ export function App() {
           <Route component={NotFoundPage} />
         </Switch>
         <GlobalStyle />
-        <ToastContainer />
+        <ToastContainer position="bottom-left" />
       </ThemeProvider>
     </BrowserRouter>
   );

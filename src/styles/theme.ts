@@ -1,4 +1,12 @@
 const theme = {
+  colors: {
+    primaryBlue: '#000852',
+    black: '#000000',
+    white: '#FFFFFF',
+    redPigment: '#DC1818',
+    northeastSnow: '#F5F6F8',
+    background: '#E5E5E5',
+  },
   space: {
     none: 0,
     xs: '5px',

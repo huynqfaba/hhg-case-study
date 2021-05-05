@@ -11,15 +11,16 @@ import {
   FontWeightProps,
   LayoutProps,
 } from 'styled-system';
+import theme from 'styles/theme';
 
 export const Link = styled(RouterLink)<
   ColorProps & SpaceProps & FontWeightProps & LayoutProps
 >`
   text-decoration: none;
-  color: #000;
+  color: ${theme.colors.black};
   :hover {
     text-decoration: none;
-    color: #000;
+    color: ${theme.colors.black};
   }
 
   ${compose(color, fontWeight, space, layout)};
