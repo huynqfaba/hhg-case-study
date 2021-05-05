@@ -75,6 +75,8 @@ Remove the example app to start your project!
 yarn cleanAndSetup
 ```
 
+Add file .env same as .env.example
+
 ---
 
 ## Features
