@@ -4,33 +4,103 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { reducer, sliceKey } from './slice';
+import { actions, reducer, sliceKey } from './slice';
 import { selectEmployee } from './selectors';
 import { employeeSaga } from './saga';
+import { Button, Flex, Link, Table } from 'app/components';
+import { TableInfo } from 'types/table';
+import { LoadingIndicator } from '../../components/LoadingIndicator';
+import { CreateEmployeeModal } from './components/CreateEmployeeModal';
 
-interface Props {}
+const tableInfo: TableInfo = {
+  tableName: 'employees',
+  columns: [
+    {
+      id: 'name',
+      label: 'name',
+    },
+    {
+      id: 'email',
+      label: 'email',
+    },
+    {
+      id: 'position',
+      label: 'position',
+    },
+  ],
+};
 
-export function Employee(props: Props) {
+export function Employee() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
   useInjectSaga({ key: sliceKey, saga: employeeSaga });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const employee = useSelector(selectEmployee);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { listEmployees, loading, createEmployeeResult, error } = useSelector(
+    selectEmployee,
+  );
   const dispatch = useDispatch();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  useEffect(() => {
+    dispatch(actions.getEmployees());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (createEmployeeResult) {
+      setIsOpenModal(false);
+      toast.success('New employee have been created.');
+      dispatch(actions.resetStateResult());
+    }
+
+    if (error) {
+      toast.error(error);
+      dispatch(actions.resetStateResult());
+    }
+  }, [createEmployeeResult, dispatch, error]);
+
+  const data = React.useMemo(
+    () =>
+      listEmployees.map(employee => {
+        return {
+          name: employee.name,
+          email: employee.email,
+          position: employee.position,
+        };
+      }),
+    [listEmployees],
+  );
 
   return (
-    <>
+    <div className="mx-3 mt-3">
       <Helmet>
         <title>Employee</title>
         <meta name="description" content="Description of Employee" />
       </Helmet>
-      <div></div>
-    </>
+      {loading ? (
+        <LoadingIndicator />
+      ) : (
+        <div>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Link to="/" color="#000852" fontWeight="bold">
+              Return back
+            </Link>
+            <Button bg="#000852" onClick={() => setIsOpenModal(true)}>
+              New
+            </Button>
+          </Flex>
+          <Table tableInfo={tableInfo} data={data} />
+          <CreateEmployeeModal
+            visible={isOpenModal}
+            handleClose={() => setIsOpenModal(false)}
+          />
+        </div>
+      )}
+    </div>
   );
 }
