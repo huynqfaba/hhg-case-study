@@ -17,7 +17,7 @@ Project will be default start at port 3000. Access via http://localhost:3000/
 
 ## Available urls
 
-1.  ```/counter ```: The counter page
-2.  ```/employee ```: The employees page
+1.  ```/counter```: The counter page
+2.  ```/employee```: The employees page
 
 ---
