@@ -15,7 +15,7 @@ export function Counter() {
   const [count, setCount] = useState(INITIAL_NUMBER);
 
   return (
-    <div className="mt-3 ml-3">
+    <div className="mx-3 mt-3">
       <Helmet>
         <title>Counter</title>
         <meta name="description" content="Description of Counter" />

@@ -1,4 +1,3 @@
-import { HomeState } from 'app/containers/Home/types';
 import { EmployeeState } from 'app/containers/Employee/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
@@ -9,7 +8,6 @@ import { EmployeeState } from 'app/containers/Employee/types';
   So, not available always
 */
 export interface RootState {
-  home?: HomeState;
   employee?: EmployeeState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

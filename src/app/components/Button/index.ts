@@ -22,6 +22,10 @@ export const Button = styled.button<ColorProps & SpaceProps & LayoutProps>(
       outline: 'none',
     },
     height: '32px',
+    '&:disabled': {
+      opacity: '0.5',
+    },
   },
+
   compose(color, space, layout),
 );
